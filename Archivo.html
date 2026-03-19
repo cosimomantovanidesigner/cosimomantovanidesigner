@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archive – Cosimo Mantovani</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#111;
+      --muted:#6b6b6b;
+      --line:rgba(17,17,17,.12);
+      --max:1680px;
+      --pad:clamp(18px,2vw,34px);
+      --radius:16px;
+    }
+
+    *{box-sizing:border-box;}
+
+    body{
+      margin:0;
+      font-family:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .wrap{
+      width:min(calc(100% - 32px),var(--max));
+      margin:auto;
+    }
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(16px);
+      background:color-mix(in srgb, var(--bg) 86%, white 14%);
+      border-bottom:1px solid transparent;
+      transition:border-color .25s ease;
+    }
+
+    .site-header.scrolled{
+      border-color:var(--line);
+    }
+
+    .topbar{
+      max-width:var(--max);
+      margin:auto;
+      min-height:84px;
+      padding:0 var(--pad);
+      display:grid;
+      grid-template-columns:1fr auto;
+      align-items:center;
+    }
+
+    .nav-buttons{
+      display:flex;
+      gap:24px;
+    }
+
+    .nav-link{
+      font-size:12px;
+      font-weight:500;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      padding-bottom:4px;
+      border-bottom:1px solid transparent;
+    }
+
+    .nav-link:hover,
+    .nav-link.active{
+      border-color:var(--text);
+    }
+
+    .hero{
+      padding:60px var(--pad) 40px;
+    }
+
+    .hero h1{
+      font-size:clamp(34px,4vw,72px);
+      line-height:.95;
+      letter-spacing:-.05em;
+      margin:0;
+      max-width:14ch;
+    }
+
+    .hero p{
+      margin-top:20px;
+      max-width:640px;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .featured-project{
+      padding:60px var(--pad);
+      border-top:1px solid var(--line);
+    }
+
+    .project-head{
+      display:grid;
+      grid-template-columns:.6fr 1.4fr;
+      gap:30px;
+      margin-bottom:30px;
+    }
+
+    .project-kicker{
+      font-size:12px;
+      font-weight:500;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    .project-title{
+      font-size:clamp(30px,4vw,64px);
+      font-weight:500;
+      line-height:.95;
+      letter-spacing:-.05em;
+      margin:0 0 12px 0;
+    }
+
+    .project-text{
+      max-width:640px;
+      color:var(--muted);
+      font-size:15px;
+      font-weight:400;
+      line-height:1.8;
+    }
+
+    .project-link{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-top:22px;
+      padding-bottom:4px;
+      border-bottom:1px solid var(--text);
+      font-size:12px;
+      font-weight:500;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--text);
+      text-decoration:none;
+    }
+
+    .project-media{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:16px;
+    }
+
+    .project-media figure{
+      margin:0;
+      overflow:hidden;
+      border-radius:var(--radius);
+      background:#ddd;
+    }
+
+    .project-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .span-12{grid-column:span 12;min-height:520px;}
+    .span-8{grid-column:span 8;min-height:420px;}
+    .span-6{grid-column:span 6;min-height:360px;}
+    .span-4{grid-column:span 4;min-height:320px;}
+
+    .site-footer{
+      max-width:var(--max);
+      margin:auto;
+      padding:28px var(--pad) 44px;
+      border-top:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    @media(max-width:900px){
+      .project-head{
+        grid-template-columns:1fr;
+      }
+
+      .project-media{
+        grid-template-columns:1fr;
+      }
+
+      .span-12,
+      .span-8,
+      .span-6,
+      .span-4{
+        grid-column:span 1;
+        min-height:320px;
+      }
+
+      .site-footer{
+        flex-direction:column;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header" id="siteHeader">
+    <div class="topbar">
+      <div></div>
+
+      <div class="nav-buttons">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="Archivo.html" class="nav-link active">Archive</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero wrap">
+      <h1>Archive</h1>
+
+      <p>
+        Una raccolta di progetti precedenti, concept e sperimentazioni di design.
+      </p>
+    </section>
+
+    <section id="featured"></section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div>Cosimo Mantovani</div>
+    <div>
+      <a href="mailto:cosimomantovanidesigner@gmail.com">cosimomantovanidesigner@gmail.com</a> · 2025
+    </div>
+  </footer>
+
+  <script>
+    const siteData = {
+      featured: [
+        {
+          category:'Experience Design',
+          title:'LAB - Museo del Design',
+          text:'Il progetto propone l’integrazione di installazioni in realtà aumentata (AR) all’interno del percorso museale, con l’obiettivo di arricchire l’esperienza di visita e restituire agli oggetti esposti il loro contesto originario.',
+          link:'Museo.html',
+          media:[
+            { type: 'image', src: 'images/Museo5.jpg', span: 'span-8', alt: 'Dashboard image 1' },
+            { type: 'image', src: 'images/Museo1.jpg', span: 'span-4', alt: 'Dashboard image 2' }
+          ]
+        },
+
+        {
+          category:'Product Design',
+          title:'Sauoro',
+          text:'Sauoro è una lampada da tavolo progettata per coniugare ricerca formale, efficienza energetica e qualità della luce. Il progetto nasce nell’ambito di un contest di design e si sviluppa attorno all’idea di un oggetto essenziale, capace di integrare funzione tecnica e sperimentazione visiva.',
+          link:'Sauoro.html',
+          media:[
+            { type: 'image', src: 'images/Sauoro3.jpg', span: 'span-8', alt: 'Dashboard image 1' },
+            { type: 'image', src: 'images/Sauoro1.jpg', span: 'span-4', alt: 'Dashboard image 2' }
+          ]
+        },
+
+        {
+          category:'Render',
+          title:'E-Anode',
+          text:'Per Tecnocorr ho realizzato la serie di render dedicati al dispositivo E-Anode, sviluppati con l’obiettivo di costruire un’immagine del prodotto capace di comunicare con chiarezza la sua identità formale e la sua presenza in contesti fieristici e commerciali.',
+          link:'eanode.html',
+          media:[
+            { type: 'image', src: 'images/Anodo1.jpg', span: 'span-8', alt: 'Dashboard image 1' },
+            { type: 'image', src: 'images/Anodo2.jpg', span: 'span-4', alt: 'Dashboard image 2' }
+          ]
+        },
+
+        {
+          category:'Product Design',
+          title:'Orbit',
+          text:'Orbit è un piano di lavoro portatile progettato per ambienti di coworking, lounge e spazi collaborativi informali.',
+          link:'Orbit.html',
+          media:[
+            { type: 'image', src: 'images/Orbit2.jpg', span: 'span-8', alt: 'Dashboard image 1' },
+            { type: 'image', src: 'images/Orbit3.1.jpg', span: 'span-4', alt: 'Dashboard image 2' }
+          ]
+        },
+
+        {
+          category:'Architettura & Interior Design',
+          title:'Aexpe Montecatone',
+          text:'Aexpe è un progetto di riqualificazione concepito come visione contemporanea per il recupero del Padiglione Paolini, parte dello storico sanatorio di Montecatone. Realizzato in team, il progetto nasce dall’intento di restituire una nuova funzione a un edificio abbandonato, oggi circondato da miti e suggestioni legati al suo stato di disuso.',
+          link:'Montecatone.html',
+          media:[
+            { type: 'image', src: 'images/Montecatone12.jpg', span: 'span-8', alt: 'Dashboard image 1' },
+            { type: 'image', src: 'images/Montecatone9.jpg', span: 'span-4', alt: 'Dashboard image 2' }
+          ]
+        },
+
+        {
+          category:'Food Design & Packaging',
+          title:'Chirps',
+          text:'Chirps è un estrusore domestico progettato per la produzione di pasta fresca a base di farina di grillo, concepito per introdurre nuove abitudini alimentari in modo semplice, consapevole e personalizzabile.',
+          link:'Estrusore.html',
+          media:[
+            { type: 'image', src: 'images/Estrusore4.jpg', span: 'span-8', alt: 'Dashboard image 1' },
+            { type: 'image', src: 'images/Estrusore3.jpg', span: 'span-4', alt: 'Dashboard image 2' }
+          ]
+        },
+
+        {
+          category:'Merch & Graphics',
+          title:'Hottanta - Next Generation',
+          text:'Hottanta è un evento tematico organizzato a Piombino da 20Eventi, dedicato alla cultura e all’immaginario degli anni ’80, in cui musica, estetica e atmosfera visiva diventano parte centrale dell’esperienza del pubblico.',
+          link:'Hottanta.html',
+          media:[
+            { type: 'image', src: 'images/Hottanta.jpg', span: 'span-6', alt: 'Dashboard image 1' },
+            { type: 'image', src: 'images/Hottanta3.jpg', span: 'span-6', alt: 'Dashboard image 2' }
+          ]
+        }
+      ]
+    };
+
+    const featuredRoot = document.getElementById("featured");
+    const header = document.getElementById("siteHeader");
+
+    function renderMediaItem(media){
+      return `
+        <figure class="${media.span}">
+          <img src="${media.src}" alt="${media.alt || ''}">
+        </figure>
+      `;
+    }
+
+    featuredRoot.innerHTML = siteData.featured.map((project) => `
+      <article class="featured-project wrap">
+        <div class="project-head">
+          <div>
+            <div class="project-kicker">${project.category}</div>
+          </div>
+
+          <div>
+            <h2 class="project-title">${project.title}</h2>
+            <p class="project-text">${project.text}</p>
+            <a class="project-link" href="${project.link}">Read more</a>
+          </div>
+        </div>
+
+        <div class="project-media">
+          ${project.media.map(renderMediaItem).join("")}
+        </div>
+      </article>
+    `).join("");
+
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sauoro</title>
+
+  <style>
+    :root{
+      --bg:#f5f4f0;
+      --text:#111;
+      --muted:#6b6b6b;
+      --line:rgba(17,17,17,.12);
+      --radius:16px;
+      --pad:clamp(18px,2vw,34px);
+      --max:1200px;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(16px);
+      background:color-mix(in srgb, var(--bg) 86%, white 14%);
+      border-bottom:1px solid transparent;
+      transition:border-color .25s ease;
+    }
+
+    .site-header.scrolled{
+      border-color:var(--line);
+    }
+
+    .topbar{
+      max-width:var(--max);
+      margin:auto;
+      min-height:84px;
+      padding:0 20px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      align-items:center;
+    }
+
+    .nav-buttons{
+      display:flex;
+      gap:24px;
+    }
+
+    .nav-link{
+      font-size:12px;
+      font-weight:500;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      padding-bottom:4px;
+      border-bottom:1px solid transparent;
+    }
+
+    .nav-link:hover{
+      border-color:var(--text);
+    }
+
+    .container{
+      max-width:var(--max);
+      margin:auto;
+      padding:60px 20px;
+    }
+
+    .project-header{
+      display:grid;
+      grid-template-columns:180px 1fr;
+      gap:30px;
+      align-items:start;
+      margin-bottom:40px;
+    }
+
+    .project-logo-box{
+      width:100%;
+      aspect-ratio:1 / 1;
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:16px;
+      background:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    .project-logo-box img{
+      max-width:80%;
+      max-height:80%;
+      object-fit:contain;
+    }
+
+    .project-title h1{
+      font-size:56px;
+      margin:0 0 16px 0;
+      line-height:1;
+      letter-spacing:-0.04em;
+    }
+
+    .project-title p{
+      font-size:18px;
+      line-height:1.6;
+      max-width:720px;
+      margin:0;
+    }
+
+    .hero-grid{
+      margin:40px 0;
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:20px;
+    }
+
+    .hero-grid figure,
+    .gallery-grid figure{
+      margin:0;
+      overflow:hidden;
+      border-radius:12px;
+      background:#ddd;
+    }
+
+    .hero-grid img,
+    .gallery-grid img,
+    .gallery-grid video{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .project-body{
+      display:grid;
+      grid-template-columns:1.4fr .6fr;
+      gap:40px;
+      margin:40px 0 50px;
+    }
+
+    .project-text p{
+      font-size:18px;
+      line-height:1.7;
+      margin:0 0 22px 0;
+      max-width:760px;
+    }
+
+    .credits-box{
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:16px;
+      background:white;
+      padding:24px;
+      height:fit-content;
+    }
+
+    .credits-box h3{
+      margin:0 0 18px 0;
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      color:#666;
+    }
+
+    .credits-box p{
+      margin:0 0 14px 0;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .credits-box p:last-child{
+      margin-bottom:0;
+    }
+
+    .gallery-grid{
+      margin-top:40px;
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:20px;
+    }
+
+    .span-12{
+      grid-column:span 12;
+      min-height:520px;
+    }
+
+    .span-8{
+      grid-column:span 8;
+      min-height:420px;
+    }
+
+    .span-6{
+      grid-column:span 6;
+      min-height:360px;
+    }
+
+    .span-4{
+      grid-column:span 4;
+      min-height:320px;
+    }
+
+    .site-footer{
+      max-width:var(--max);
+      margin:auto;
+      padding:28px 20px 44px;
+      border-top:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    @media (max-width:900px){
+      .project-header,
+      .project-body{
+        grid-template-columns:1fr;
+      }
+
+      .project-logo-box{
+        max-width:180px;
+      }
+
+      .project-title h1{
+        font-size:42px;
+      }
+
+      .hero-grid,
+      .gallery-grid{
+        grid-template-columns:1fr;
+      }
+
+      .span-12,
+      .span-8,
+      .span-6,
+      .span-4{
+        grid-column:span 1;
+        min-height:320px;
+      }
+
+      .site-footer{
+        flex-direction:column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header" id="siteHeader">
+    <div class="topbar">
+      <div></div>
+
+      <div class="nav-buttons">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="Archivo.html" class="nav-link">Archive</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="project-header">
+      <div class="project-logo-box">
+        <img src="images/LogoSauoro.jpg" alt="Logo Sauoro">
+      </div>
+
+      <div class="project-title">
+        <h1>Sauoro</h1>
+        <p>
+          Sauoro è una lampada da tavolo progettata per coniugare ricerca formale, efficienza energetica e qualità della luce. Il progetto
+          nasce nell’ambito di un contest di design e si sviluppa attorno all’idea di un oggetto essenziale,
+          capace di integrare funzione tecnica e sperimentazione visiva.
+        </p>
+      </div>
+    </div>
+
+    <div class="hero-grid" id="heroGrid"></div>
+
+    <div class="project-body">
+      <div class="project-text">
+        <p>
+          La lampada è realizzata attraverso una combinazione di legno, alluminio e filo, materiali
+          scelti per costruire una struttura leggera e coerente con una logica progettuale orientata alla riduzione dell’impatto ambientale
+          e all’ottimizzazione delle risorse.
+        </p>
+
+        <p>
+          Il cuore del progetto è l’integrazione di una tecnologia LED progettata per minimizzare le ombre proiettate,
+          generando una luce diretta e uniforme particolarmente adatta ad attività che richiedono precisione visiva.
+        </p>
+
+        <p>
+          L’elemento distintivo di Sauoro risiede nell’interazione tra la sorgente luminosa e la trama di fili collocata nella parte posteriore della struttura.
+          Quando la lampada è chiusa, la luce viene filtrata e riflessa dalla trama creando un effetto cromatico diffuso sulla superficie circostante,
+          trasformando l’oggetto da semplice dispositivo funzionale a elemento capace di costruire un’atmosfera luminosa nello spazio.
+        </p>
+      </div>
+
+      <div class="credits-box">
+        <h3>Project credits</h3>
+        <p><strong>Product Designers:</strong><br>Cosimo Mantovani, Erik Magazzini</p>
+        <p><strong>Hardware:</strong> Welt Electronics</p>
+        <p><strong>Contest:</strong> "Per filo e per legno"</p>
+        <p><strong>Anno:</strong> 2018</p>
+      </div>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid"></div>
+
+  </div>
+
+  <footer class="site-footer">
+    <div>Cosimo Mantovani</div>
+    <div>
+      <a href="mailto:cosimomantovanidesigner@gmail.com">cosimomantovanidesigner@gmail.com</a> · 2025
+    </div>
+  </footer>
+
+  <script>
+    const heroMedia = [
+      { type: 'image', src: 'images/Sauoro3.jpg', span: 'span-8', alt: 'Dashboard image 1' },
+      { type: 'image', src: 'images/Sauoro1.jpg', span: 'span-4', alt: 'Dashboard image 2' },
+    ];
+
+    const projectGallery = [
+      { type: 'image', src: 'images/Sauoro4.jpg', span: 'span-8', alt: 'Dashboard image 3' },
+      { type: 'image', src: 'images/Sauoro2.jpg', span: 'span-4', alt: 'Dashboard image 4' }
+    ];
+
+    const heroRoot = document.getElementById('heroGrid');
+    const galleryRoot = document.getElementById('galleryGrid');
+    const header = document.getElementById('siteHeader');
+
+    function renderMediaItem(media) {
+      if (media.type === 'video') {
+        return `
+          <figure class="${media.span}">
+            <video autoplay muted playsinline controls>
+              <source src="${media.src}" type="${media.mime || 'video/mp4'}">
+              Il browser non supporta il video.
+            </video>
+          </figure>
+        `;
+      }
+
+      return `
+        <figure class="${media.span}">
+          <img src="${media.src}" alt="${media.alt || ''}">
+        </figure>
+      `;
+    }
+
+    heroRoot.innerHTML = heroMedia.map(renderMediaItem).join('');
+    galleryRoot.innerHTML = projectGallery.map(renderMediaItem).join('');
+
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    });
+  </script>
+</body>
+</html>
